@@ -14,11 +14,11 @@ import os
 import logging
 logger = logging.getLogger(__name__)
 
-BASE_URL = os.getenv("BASE_URL")
-API_KEY = os.getenv("API_KEY")
-MODEL_ID = os.getenv("MODEL_ID")
+BASE_URL = os.getenv("LLM_BASE_URL")
+API_KEY = os.getenv("LLM_API_KEY")
+MODEL_ID = os.getenv("LLM_MODEL_ID")
 
-llm = OpenAICompatibleClient(base_url=BASE_URL, api_key=API_KEY, model_id=MODEL_ID)
+llm = OpenAICompatibleClient(base_url=BASE_URL, api_key=API_KEY)
 
 AGENT_SYSTEM_PROMPT = """
 你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。
@@ -52,7 +52,7 @@ def main():
         # 1. 构建用户输入
         user_prompt = "\n".join(prompt_history)
         # 2. 调用模型
-        llm_output = llm.generate(system_prompt=AGENT_SYSTEM_PROMPT, user_prompt=user_prompt)
+        llm_output = llm.generate(model_id=MODEL_ID, system_prompt=AGENT_SYSTEM_PROMPT, user_prompt=user_prompt)
         # 3. 解析模型输出
         match = re.search(r'(Thought:.*?Action:.*?)(?=\n\s*(?:Thought:|Action:|Observation:)|\Z)', llm_output,
                           re.DOTALL)

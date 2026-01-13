@@ -4,13 +4,13 @@ import sys
 def setup_logging():
     # 获取 root logger
     root_logger = logging.getLogger()
-    root_logger.setLevel(logging.DEBUG)  # 设置最低级别
+    root_logger.setLevel(logging.INFO)  # 设置最低级别
 
     # 避免重复添加 handler（重要！）
     if not root_logger.handlers:
         # 创建控制台处理器
         console_handler = logging.StreamHandler(sys.stdout)
-        console_handler.setLevel(logging.DEBUG)
+        console_handler.setLevel(logging.INFO)
 
         # 定义统一格式
         formatter = logging.Formatter(
