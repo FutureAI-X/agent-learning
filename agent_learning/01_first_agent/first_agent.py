@@ -11,9 +11,6 @@ load_dotenv()
 import re
 import os
 
-import logging
-logger = logging.getLogger(__name__)
-
 BASE_URL = os.getenv("LLM_BASE_URL")
 API_KEY = os.getenv("LLM_API_KEY")
 MODEL_ID = os.getenv("LLM_MODEL_ID")
@@ -48,7 +45,7 @@ prompt_history = [f'用户输入：{question}']
 
 def main():
     for i in range(5):
-        logger.info(f"============= 第{i}循环 =============")
+        print(f"============= 第{i}循环 =============")
         # 1. 构建用户输入
         user_prompt = "\n".join(prompt_history)
         # 2. 调用模型
@@ -60,19 +57,19 @@ def main():
             truncated = match.group(1).strip()
             if truncated != llm_output.strip():
                 llm_output = truncated
-                logger.info("已截断多余的 Thought-Action 对")
-        logger.info(f"模型输出：{llm_output}")
+                print("已截断多余的 Thought-Action 对")
+        print(f"{llm_output}")
         prompt_history.append(llm_output)
         # 4. 根据输出执行操作
         action_match = re.search(r"Action: (.*)", llm_output, re.DOTALL)
         if not action_match:
-            logger.error("解析错误:模型输出中未找到 Action。")
+            print("解析错误:模型输出中未找到 Action。")
             break
         action_str = action_match.group(1).strip()
 
         if action_str.startswith("finish"):
             final_answer = re.search(r'finish\(answer="(.*)"\)', action_str).group(1)
-            logger.info(f"任务完成，最终答案: {final_answer}")
+            print(f"任务完成，最终答案: {final_answer}")
             break
 
         tool_name = re.search(r"(\w+)\(", action_str).group(1)
@@ -87,9 +84,9 @@ def main():
         # 3.4. 记录观察结果
         observation_str = f"Observation: {observation}"
         prompt_history.append(observation_str)
-        logger.info(observation_str)
+        print(observation_str)
 
-        logger.info(f"====================================")
+        print(f"====================================")
 
 if __name__ == "__main__":
     main()
