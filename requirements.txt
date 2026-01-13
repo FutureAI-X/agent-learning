@@ -1,0 +1,4 @@
+openai==2.15.0              # openai sdk
+requests==2.32.5            # http库
+tavily-python==0.7.17       # tavily sdk
+python-dotenv==1.2.1        # 环境变量管理
