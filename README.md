@@ -1,2 +1,1 @@
-# agent-learning
-AI Agent Learning
+# AI Agent Learning
