@@ -17,8 +17,9 @@ class OpenAICompatibleClient:
             provider = os.getenv("LLM_DEFAULT_PROVIDER")
         base_url = os.getenv(f"LLM_BASE_URL_{provider.upper()}")
         api_key = os.getenv(f"LLM_API_KEY_{provider.upper()}")
-        self.default_model_id = os.getenv(f"LLM_DEFAULT_MODEL_ID_{provider.upper()}")
+        self.provider = provider
         self.client = OpenAI(base_url=base_url, api_key=api_key, timeout=timeout)
+        self.default_model_id = os.getenv(f"LLM_DEFAULT_MODEL_ID_{provider.upper()}")
 
     def generate(self, model_id: str, system_prompt: str, user_prompt: str):
         try:
