@@ -15,7 +15,7 @@ BASE_URL = os.getenv("LLM_BASE_URL")
 API_KEY = os.getenv("LLM_API_KEY")
 MODEL_ID = os.getenv("LLM_MODEL_ID")
 
-llm = OpenAICompatibleClient(base_url=BASE_URL, api_key=API_KEY)
+llm = OpenAICompatibleClient()
 
 AGENT_SYSTEM_PROMPT = """
 你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。

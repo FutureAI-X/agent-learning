@@ -13,7 +13,7 @@ LLM_API_KEY = os.getenv("LLM_API_KEY")
 LLM_MODEL_ID = os.getenv("LLM_MODEL_ID")
 
 # 创建 LLM Client
-client = OpenAICompatibleClient(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
+client = OpenAICompatibleClient()
 
 if __name__ == "__main__":
     # 定义对话消息体

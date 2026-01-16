@@ -10,7 +10,7 @@ import os
 LLM_BASE_URL = os.getenv("LLM_BASE_URL")
 LLM_API_KEY = os.getenv("LLM_API_KEY")
 
-llm_client = OpenAICompatibleClient(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
+llm_client = OpenAICompatibleClient()
 tool_executor = ToolExecutor()
 tool_executor.register_tool(name='search', description=SEARCH_DESCRIPTION, func=search)
 react_agent = ReactAgent(llm_client, tool_executor)

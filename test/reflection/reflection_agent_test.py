@@ -10,7 +10,7 @@ LLM_MODEL_ID = os.getenv("LLM_MODEL_ID")
 from agent_learning.llms.openai_compatible_client import OpenAICompatibleClient
 from agent_learning.reflection.reflection_agent import ReflectionAgent
 
-llm_client = OpenAICompatibleClient(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
+llm_client = OpenAICompatibleClient()
 reflection_agent = ReflectionAgent(llm_client)
 
 if __name__ == "__main__":

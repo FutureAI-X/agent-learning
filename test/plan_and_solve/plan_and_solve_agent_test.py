@@ -9,7 +9,7 @@ LLM_BASE_URL = os.getenv("LLM_BASE_URL")
 LLM_API_KEY = os.getenv("LLM_API_KEY")
 LLM_MODEL_ID = os.getenv("LLM_MODEL_ID")
 
-llm_client = OpenAICompatibleClient(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
+llm_client = OpenAICompatibleClient()
 agent = PlanAndSolveAgent(llm_client)
 
 if __name__ == "__main__":
